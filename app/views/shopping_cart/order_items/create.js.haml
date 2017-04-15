@@ -1,0 +1,5 @@
+- if @order.errors.any? || @order_item.errors.any?
+  alert("#{@order_item.errors.full_messages.first}")
+- else
+  $(".shop-quantity").html("#{cart_size}")
+  alert("Item successfully added to cart.")
