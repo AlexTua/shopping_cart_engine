@@ -3,7 +3,7 @@ module ShoppingCart
     after_create :decrease_book_quantity
     after_destroy :increase_book_quantity
 
-    belongs_to :order, optional: true, class_name: 'ShoppingCart::Order'
+    belongs_to :order, optional: true, class_name: ShoppingCart::Order.name
     belongs_to :book, optional: true, autosave: true
 
     validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
@@ -13,7 +13,7 @@ module ShoppingCart
     validate :order_present
 
     default_scope { order(created_at: :desc) }
-    
+
     def total_price
       book.price * quantity
     end
@@ -32,17 +32,17 @@ module ShoppingCart
 
     def order_present
       return if order
-      errors.add(:order, "is not a valid order.")
+      errors.add(:order, 'is not a valid order.')
     end
 
     def book_quantity
       return unless book.quantity < quantity
-      errors.add(:order_item, "is out of stock")
+      errors.add(:order_item, 'is out of stock')
     end
 
     def order_item_uniq
       return unless order.order_items.find_by_book_id(book.id)
-      errors.add(:order_item, "is already in a cart")
+      errors.add(:order_item, 'is already in a cart')
     end
   end
 end

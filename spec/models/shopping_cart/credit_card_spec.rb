@@ -1,7 +1,7 @@
 require 'rails_helper'
 module ShoppingCart
   RSpec.describe ShoppingCart::CreditCard, type: :model do
-    describe "Validations" do
+    describe 'Validations' do
       [:card_number, :name_on_card, :mm_yy, :cvv].each do |field|
         it { should validate_presence_of(field) }
       end
@@ -10,7 +10,7 @@ module ShoppingCart
       it { should validate_length_of(:cvv).is_at_most(4) }
     end
 
-    describe "Associations" do
+    describe 'Associations' do
       it { should have_many(:orders) }
     end
   end

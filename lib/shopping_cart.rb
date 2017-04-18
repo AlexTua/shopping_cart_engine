@@ -1,4 +1,4 @@
-require "shopping_cart/engine"
+require 'shopping_cart/engine'
 require 'haml'
 require 'aasm'
 require 'wicked'
@@ -10,6 +10,6 @@ require 'cancancan'
 
 module ShoppingCart
   def self.load_files
-    Dir["app/services/shopping_cart/*.rb"]
+    Dir['app/services/shopping_cart/*.rb']
   end
 end

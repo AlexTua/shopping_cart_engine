@@ -10,90 +10,88 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414125413) do
-
+ActiveRecord::Schema.define(version: 20_170_414_125_413) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "books", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.decimal  "price",       precision: 10, scale: 2
-    t.integer  "quantity"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+  create_table 'books', force: :cascade do |t|
+    t.string   'title'
+    t.text     'description'
+    t.decimal  'price', precision: 10, scale: 2
+    t.integer  'quantity'
+    t.datetime 'created_at',                           null: false
+    t.datetime 'updated_at',                           null: false
   end
 
-  create_table "shopping_cart_addresses", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "city"
-    t.string   "zip"
-    t.string   "phone"
-    t.string   "address_name"
-    t.string   "address_type"
-    t.string   "country"
-    t.integer  "user_id"
-    t.integer  "order_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["order_id"], name: "index_shopping_cart_addresses_on_order_id", using: :btree
-    t.index ["user_id"], name: "index_shopping_cart_addresses_on_user_id", using: :btree
+  create_table 'shopping_cart_addresses', force: :cascade do |t|
+    t.string   'first_name'
+    t.string   'last_name'
+    t.string   'city'
+    t.string   'zip'
+    t.string   'phone'
+    t.string   'address_name'
+    t.string   'address_type'
+    t.string   'country'
+    t.integer  'user_id'
+    t.integer  'order_id'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
+    t.index ['order_id'], name: 'index_shopping_cart_addresses_on_order_id', using: :btree
+    t.index ['user_id'], name: 'index_shopping_cart_addresses_on_user_id', using: :btree
   end
 
-  create_table "shopping_cart_coupons", force: :cascade do |t|
-    t.string   "code"
-    t.decimal  "discount",   precision: 10, scale: 2
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table 'shopping_cart_coupons', force: :cascade do |t|
+    t.string   'code'
+    t.decimal  'discount', precision: 10, scale: 2
+    t.datetime 'created_at',                          null: false
+    t.datetime 'updated_at',                          null: false
   end
 
-  create_table "shopping_cart_credit_cards", force: :cascade do |t|
-    t.string   "card_number"
-    t.string   "name_on_card"
-    t.string   "mm_yy"
-    t.string   "cvv"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table 'shopping_cart_credit_cards', force: :cascade do |t|
+    t.string   'card_number'
+    t.string   'name_on_card'
+    t.string   'mm_yy'
+    t.string   'cvv'
+    t.datetime 'created_at',   null: false
+    t.datetime 'updated_at',   null: false
   end
 
-  create_table "shopping_cart_deliveries", force: :cascade do |t|
-    t.decimal  "price",      precision: 10, scale: 2
-    t.string   "name"
-    t.integer  "min_day"
-    t.integer  "max_day"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table 'shopping_cart_deliveries', force: :cascade do |t|
+    t.decimal  'price', precision: 10, scale: 2
+    t.string   'name'
+    t.integer  'min_day'
+    t.integer  'max_day'
+    t.datetime 'created_at',                          null: false
+    t.datetime 'updated_at',                          null: false
   end
 
-  create_table "shopping_cart_order_items", force: :cascade do |t|
-    t.integer  "quantity"
-    t.integer  "order_id"
-    t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_shopping_cart_order_items_on_book_id", using: :btree
-    t.index ["order_id"], name: "index_shopping_cart_order_items_on_order_id", using: :btree
+  create_table 'shopping_cart_order_items', force: :cascade do |t|
+    t.integer  'quantity'
+    t.integer  'order_id'
+    t.integer  'book_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['book_id'], name: 'index_shopping_cart_order_items_on_book_id', using: :btree
+    t.index ['order_id'], name: 'index_shopping_cart_order_items_on_order_id', using: :btree
   end
 
-  create_table "shopping_cart_orders", force: :cascade do |t|
-    t.decimal  "total_price",    precision: 10, scale: 2
-    t.integer  "delivery_id"
-    t.integer  "user_id"
-    t.integer  "coupon",                                  default: 0
-    t.integer  "credit_card_id"
-    t.string   "state"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.index ["credit_card_id"], name: "index_shopping_cart_orders_on_credit_card_id", using: :btree
-    t.index ["delivery_id"], name: "index_shopping_cart_orders_on_delivery_id", using: :btree
-    t.index ["user_id"], name: "index_shopping_cart_orders_on_user_id", using: :btree
+  create_table 'shopping_cart_orders', force: :cascade do |t|
+    t.decimal  'total_price', precision: 10, scale: 2
+    t.integer  'delivery_id'
+    t.integer  'user_id'
+    t.integer  'coupon', default: 0
+    t.integer  'credit_card_id'
+    t.string   'state'
+    t.datetime 'created_at',                                          null: false
+    t.datetime 'updated_at',                                          null: false
+    t.index ['credit_card_id'], name: 'index_shopping_cart_orders_on_credit_card_id', using: :btree
+    t.index ['delivery_id'], name: 'index_shopping_cart_orders_on_delivery_id', using: :btree
+    t.index ['user_id'], name: 'index_shopping_cart_orders_on_user_id', using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "email"
+  create_table 'users', force: :cascade do |t|
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string   'email'
   end
-
 end

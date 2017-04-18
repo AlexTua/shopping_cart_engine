@@ -1,5 +1,3 @@
-require_dependency "shopping_cart/application_controller"
-
 module ShoppingCart
   class OrderItemsController < ApplicationController
     after_action :save_user_to_order, only: :create
@@ -13,7 +11,7 @@ module ShoppingCart
     end
 
     def update
-      if params[:operation] == "minus" && @order_item
+      if params[:operation] == 'minus' && @order_item
         update_order_item(1)
       elsif @order_item.book.in_stock?
         update_order_item(-1)
@@ -27,7 +25,7 @@ module ShoppingCart
         @order_item.destroy
         redirect_to cart_path, notice: I18n.t('flash.deleted')
       else
-        redirect_to cart_path, alert: I18n.t('flash.was_not_found')    
+        redirect_to cart_path, alert: I18n.t('flash.was_not_found')
       end
     end
 

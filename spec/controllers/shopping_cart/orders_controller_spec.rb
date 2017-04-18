@@ -18,11 +18,11 @@ module ShoppingCart
         get :index
       end
 
-      it "assigns the requested orders to @orders" do
+      it 'assigns the requested orders to @orders' do
         expect(assigns(:orders)).to eq user.orders
       end
 
-      it "renders the :index template" do
+      it 'renders the :index template' do
         expect(response).to render_template :index
       end
     end
@@ -30,7 +30,7 @@ module ShoppingCart
     describe 'GET #show' do
       before { get :show, params: { id: order.id } }
 
-      it "renders the :show template" do
+      it 'renders the :show template' do
         expect(response).to render_template :show
       end
     end

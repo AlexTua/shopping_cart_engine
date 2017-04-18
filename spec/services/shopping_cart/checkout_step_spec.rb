@@ -19,7 +19,7 @@ module ShoppingCart
     end
 
     describe '#set_current_step' do
-      before(:all) {@order = create(:order, user: create(:user)) }
+      before(:all) { @order = create(:order, user: create(:user)) }
       subject { CheckoutStepService.new(steps, {}, @order) }
 
       it 'should return address' do
@@ -27,7 +27,7 @@ module ShoppingCart
       end
 
       it 'should return delivery' do
-        @order.addresses.create(attributes_for(:address, address_type: "both"))
+        @order.addresses.create(attributes_for(:address, address_type: 'both'))
         expect(subject.set_current_step).to eq(:delivery)
       end
 

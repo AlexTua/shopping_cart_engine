@@ -4,14 +4,14 @@ module ShoppingCart
 
     before_save { update_total_price }
 
-    has_many :order_items, dependent: :destroy, class_name: 'ShoppingCart::OrderItem'
-    has_many :addresses, dependent: :destroy, class_name: 'ShoppingCart::Address'
+    has_many :order_items, dependent: :destroy, class_name: ShoppingCart::OrderItem.name
+    has_many :addresses, dependent: :destroy, class_name: ShoppingCart::Address.name
     belongs_to :user, optional: true
-    belongs_to :delivery, optional: true, class_name: 'ShoppingCart::Delivery'
-    belongs_to :credit_card, optional: true, class_name: 'ShoppingCart::CreditCard'
+    belongs_to :delivery, optional: true, class_name: ShoppingCart::Delivery.name
+    belongs_to :credit_card, optional: true, class_name: ShoppingCart::CreditCard.name
 
-    SORT_TITLES = {all: "All", in_progress: "In Progress", in_queuen: "Waiting for processing",
-                   in_delivery: "In Delivery", delivered: "Delivered", canceled: "Canceled"}.freeze
+    SORT_TITLES = { all: 'All', in_progress: 'In Progress', in_queuen: 'Waiting for processing',
+                    in_delivery: 'In Delivery', delivered: 'Delivered', canceled: 'Canceled' }.freeze
 
     default_scope { order(created_at: :desc) }
     scope :in_progress, -> { where(state: :in_progress) }
@@ -43,23 +43,18 @@ module ShoppingCart
       end
     end
 
-
     def subtotal
       order_items.collect(&:total_price).sum
     end
 
     def get_address(type)
-      return addresses.first if addresses.first.try(:address_type) == "both"
+      return addresses.first if addresses.first.try(:address_type) == 'both'
       addresses.select { |address| address.address_type == type }[0]
-    end
-
-    def track_number
-      "R" + id.to_s
     end
 
     private
 
-    def use_coupon 
+    def use_coupon
       return 0 if coupon >= subtotal
       coupon
     end

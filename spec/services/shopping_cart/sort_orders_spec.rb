@@ -30,7 +30,7 @@ module ShoppingCart
 
     describe '#choose_title' do
       it 'return scope title' do
-        expect(subject.choose_title).to eq("In Progress")
+        expect(subject.choose_title).to eq('In Progress')
       end
     end
   end

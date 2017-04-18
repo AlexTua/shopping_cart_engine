@@ -1,5 +1,3 @@
-require_dependency "shopping_cart/application_controller"
-
 module ShoppingCart
   class OrdersController < ApplicationController
     before_action :authenticate_user!
@@ -7,9 +5,11 @@ module ShoppingCart
 
     def index
       @orders = SortOrdersService.new(params[:sort_type], current_user.orders).sort_orders
+                .decorate
     end
 
     def show
+      @order = @order.decorate
     end
 
     def continue_shopping

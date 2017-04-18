@@ -17,8 +17,8 @@ module ShoppingCart
     end
 
     def use_billing_address?
-      address = @order.get_address("billing")
-      address.address_type == "both" if address
+      address = @order.get_address('billing')
+      address.address_type == 'both' if address
     end
 
     def checked_delivery?(delivery_id)
@@ -38,7 +38,7 @@ module ShoppingCart
     end
 
     def customer_name(type)
-      @order.get_address(type).first_name + " " + @order.get_address(type).last_name
+      @order.get_address(type).first_name + ' ' + @order.get_address(type).last_name
     end
   end
 end

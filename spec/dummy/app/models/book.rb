@@ -4,5 +4,4 @@ class Book < ApplicationRecord
   def in_stock?
     quantity > 0
   end
-
 end

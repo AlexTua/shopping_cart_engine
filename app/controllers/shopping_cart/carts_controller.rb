@@ -1,9 +1,7 @@
-require_dependency "shopping_cart/application_controller"
-
 module ShoppingCart
   class CartsController < ApplicationController
     def show
-      @order = current_order
+      @order = current_order.decorate
       @order_items = @order.order_items
     end
 
@@ -13,8 +11,8 @@ module ShoppingCart
       if @coupon
         @order.update_attributes(coupon: @coupon.discount)
         redirect_to cart_path, notice: I18n.t('flash.coupon_activate')
-      else 
-        redirect_to cart_path, alert: I18n.t('flash.wrong_coupon') 
+      else
+        redirect_to cart_path, alert: I18n.t('flash.wrong_coupon')
       end
     end
   end

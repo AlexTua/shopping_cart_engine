@@ -4,7 +4,7 @@ class CreateShoppingCartOrderItems < ActiveRecord::Migration[5.0]
       t.integer :quantity
       t.integer :order_id, index: true
       t.integer :book_id, index: true
-      
+
       t.timestamps
     end
   end

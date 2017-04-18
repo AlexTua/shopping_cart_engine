@@ -1,7 +1,7 @@
 module ShoppingCart
   RSpec.describe CheckoutAddressService do
     let(:params) do
-      ActionController::Parameters.new({ billing: attributes_for(:address, address_type: "both") })
+      ActionController::Parameters.new(billing: attributes_for(:address, address_type: 'both'))
     end
     let(:order) { create(:order) }
     subject { CheckoutAddressService.new(order, params) }
@@ -27,9 +27,9 @@ module ShoppingCart
       context 'when address exists' do
         it "doesn't save address to db" do
           order.addresses.create(attributes_for(:address))
-          expect {
+          expect do
             subject.create_or_update_address
-          }.not_to change(ShoppingCart::Address, :count)
+          end.not_to change(ShoppingCart::Address, :count)
         end
       end
     end

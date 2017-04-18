@@ -1,4 +1,4 @@
-module ShoppingCart 
+module ShoppingCart
   class CheckoutPaymentService
     def initialize(order, params)
       @order = order

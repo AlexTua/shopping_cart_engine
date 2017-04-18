@@ -9,10 +9,10 @@ module ShoppingCart
       g.helper false
     end
 
-    initializer "shopping_cart", after: :load_config_initializers do |app|
-      ShoppingCart.load_files.each { |file|
-        require_relative File.join("../..", file)
-      }
+    initializer 'shopping_cart', after: :load_config_initializers do |_app|
+      ShoppingCart.load_files.each do |file|
+        require_relative File.join('../..', file)
+      end
     end
   end
 end

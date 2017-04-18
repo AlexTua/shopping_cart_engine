@@ -1,7 +1,7 @@
 module ShoppingCart
   RSpec.describe CheckoutPaymentService do
     let(:params) do
-      ActionController::Parameters.new({ credit_card: attributes_for(:credit_card) })
+      ActionController::Parameters.new(credit_card: attributes_for(:credit_card))
     end
     let(:order) { create(:order) }
     subject { CheckoutPaymentService.new(order, params) }
@@ -19,18 +19,18 @@ module ShoppingCart
     describe '#create_or_update_card' do
       context "when credit card doesn't exist" do
         it 'saves card to db' do
-          expect {
+          expect do
             subject.create_or_update_card
-          }.to change(ShoppingCart::CreditCard, :count).by(1)
+          end.to change(ShoppingCart::CreditCard, :count).by(1)
         end
       end
 
       context 'when credit card exists' do
         it "doesn't save card to db" do
           order.create_credit_card(attributes_for(:credit_card))
-          expect {
+          expect do
             subject.create_or_update_card
-          }.not_to change(ShoppingCart::CreditCard, :count)
+          end.not_to change(ShoppingCart::CreditCard, :count)
         end
       end
     end

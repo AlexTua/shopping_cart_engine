@@ -3,7 +3,7 @@ module ShoppingCart
     DEFAULT_SORT = :all
 
     def initialize(sort_type, orders = nil)
-      @sort_type = sort_type 
+      @sort_type = sort_type
       @orders = orders
     end
 
